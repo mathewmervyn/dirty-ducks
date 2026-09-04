@@ -1,82 +1,98 @@
 const fantasyPlayers = [
     {
         name: "Caleb Williams",
-        team: "CHI",
-        position: "QB"
+        team: "Chicago Bears",
+        position: "QB",
+        searchName: "Caleb Williams"
     },
     {
         name: "Bijan Robinson",
-        team: "ATL",
-        position: "RB"
+        team: "Atlanta Falcons",
+        position: "RB",
+        searchName: "Bijan Robinson"
     },
     {
         name: "Ashton Jeanty",
-        team: "LV",
-        position: "RB"
+        team: "Las Vegas Raiders",
+        position: "RB",
+        searchName: "Ashton Jeanty"
     },
     {
         name: "Trey McBride",
-        team: "ARI",
-        position: "TE"
+        team: "Arizona Cardinals",
+        position: "TE",
+        searchName: "Trey McBride"
     }
   {
         name: "Zay Flowers",
-        team: "BAL",
-        position: "WR"
+        team: "Baltimore Ravens",
+        position: "WR",
+        searchName: "Zay Flowers"
     },
     {
         name: "Davante Adams",
-        team: "LAR",
-        position: "WR"
+        team: "Los Angeles Rams",
+        position: "WR",
+        searchName: "Davante Adams"
     },
     {
         name: "Alec Pierce",
-        team: "IND",
-        position: "WR"
+        team: "Indianapolis Colts",
+        position: "WR",
+        searchName: "Alec Pierce"
     },
     {
         name: "Jeremiyah Love",
-        team: "ARI",
-        position: "RB"
+        team: "Arizona Cardinals",
+        position: "RB",
+        searchName: "Jeremiyah Love"
     }
 {
         name: "Michael Pittman Jr.",
-        team: "PIT",
-        position: "WR"
+        team: "Pittsburgh Steelers",
+        position: "WR",
+        searchName: "Michael Pittman Jr."
     },
     {
         name: "Tony Pollard",
-        team: "TEN",
-        position: "RB"
+        team: "Tenessee Titans",
+        position: "RB",
+        searchName: "Tony Pollard"
     },
     {
         name: "Khalil Shakir",
-        team: "BUF",
-        position: "WR"
+        team: "Buffalo Bills",
+        position: "WR",
+        searchName: "Khalil Shakir"
     },
     {
         name: "Jacory Croskey-Merritt",
-        team: "WAS",
-        position: "RB"
+        team: "Washington Commanders",
+        position: "RB",
+        searchName: "Jacory Bill Croskey-Merritt"
     }
   {
         name: "Kyler Murray",
-        team: "MIN",
-        position: "QB"
+        team: "Minnesota Vikings",
+        position: "QB",
+        searchName: "Kyler Murray"
     },
     {
         name: "Tyler Allgeier",
-        team: "ARI",
-        position: "RB"
+        team: "Arizona Cardinals",
+        position: "RB",
+        searchName: "Tyler Allgeier"
     },
     {
         name: "Jordyn Tyson",
-        team: "NO",
-        position: "WR"
+        team: "New Orleans Saints",
+        position: "WR",
+        searchName: "Jordyn Tyson"
     },
     {
         name: "Tank Dell",
-        team: "HOU",
-        position: "WR"
+        team: "Houston Texans",
+        position: "WR",
+        searchName: "Tank Dell"
     }
 ];
