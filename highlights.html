@@ -218,12 +218,24 @@ const YOUTUBE_API_KEY = "AIzaSyDA7ORUUGoY1257EscDWfeBPwO93MtnVCU";
 
 async function testYouTube() {
 
+    const now = new Date();
+
+    const sevenDaysAgo = new Date(
+        now.getTime() - 7 * 24 * 60 * 60 * 1000
+    );
+
+    const publishedAfter = sevenDaysAgo.toISOString();
+    const publishedBefore = now.toISOString();
+
     const url =
         "https://www.googleapis.com/youtube/v3/search" +
         "?part=snippet" +
         "&q=Bijan%20Robinson" +
         "&type=video" +
-        "&maxResults=5" +
+        "&order=date" +
+        "&publishedAfter=" + encodeURIComponent(publishedAfter) +
+        "&publishedBefore=" + encodeURIComponent(publishedBefore) +
+        "&maxResults=10" +
         "&key=" + YOUTUBE_API_KEY;
 
     const response = await fetch(url);
