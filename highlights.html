@@ -69,6 +69,124 @@
 </div>
 
 <script>
+const YOUTUBE_API_KEY = "AIzaSyDA7ORUUGoY1257EscDWfeBPwO93MtnVCU";
+const NFL_CHANNEL_ID = "UCDVYQ4Zhbm3S2dlz7P1GBDg";
+const fantasyPlayers = [
+
+    {
+        name: "Caleb Williams",
+        team: "Chicago Bears",
+        position: "QB",
+        searchName: "Caleb Williams"
+    },
+
+    {
+        name: "Bijan Robinson",
+        team: "Atlanta Falcons",
+        position: "RB",
+        searchName: "Bijan Robinson"
+    },
+
+    {
+        name: "Ashton Jeanty",
+        team: "Las Vegas Raiders",
+        position: "RB",
+        searchName: "Ashton Jeanty"
+    },
+
+    {
+        name: "Trey McBride",
+        team: "Arizona Cardinals",
+        position: "TE",
+        searchName: "Trey McBride"
+    },
+
+    {
+        name: "Zay Flowers",
+        team: "Baltimore Ravens",
+        position: "WR",
+        searchName: "Zay Flowers"
+    },
+
+    {
+        name: "Davante Adams",
+        team: "Los Angeles Rams",
+        position: "WR",
+        searchName: "Davante Adams"
+    },
+
+    {
+        name: "Alec Pierce",
+        team: "Indianapolis Colts",
+        position: "WR",
+        searchName: "Alec Pierce"
+    },
+
+    {
+        name: "Jeremiyah Love",
+        team: "Arizona Cardinals",
+        position: "RB",
+        searchName: "Jeremiyah Love"
+    },
+
+    {
+        name: "Michael Pittman Jr.",
+        team: "Pittsburgh Steelers",
+        position: "WR",
+        searchName: "Michael Pittman Jr."
+    },
+
+    {
+        name: "Tony Pollard",
+        team: "Tennessee Titans",
+        position: "RB",
+        searchName: "Tony Pollard"
+    },
+
+    {
+        name: "Khalil Shakir",
+        team: "Buffalo Bills",
+        position: "WR",
+        searchName: "Khalil Shakir"
+    },
+
+    {
+        name: "Jacory Croskey-Merritt",
+        team: "Washington Commanders",
+        position: "RB",
+        searchName: "Jacory Bill Croskey-Merritt"
+    },
+
+    {
+        name: "Kyler Murray",
+        team: "Minnesota Vikings",
+        position: "QB",
+        searchName: "Kyler Murray"
+    },
+
+    {
+        name: "Tyler Allgeier",
+        team: "Arizona Cardinals",
+        position: "RB",
+        searchName: "Tyler Allgeier"
+    },
+
+    {
+        name: "Jordyn Tyson",
+        team: "New Orleans Saints",
+        position: "WR",
+        searchName: "Jordyn Tyson"
+    },
+
+    {
+        name: "Tank Dell",
+        team: "Houston Texans",
+        position: "WR",
+        searchName: "Tank Dell"
+    }
+
+];
+
 
 const fantasyPlayers = [
 
@@ -187,16 +305,273 @@ const fantasyPlayers = [
 ];
 
 
-const playersContainer = document.getElementById("players");
+/*
+    Official team YouTube channels.
+
+    We will fill this out with all 32 verified
+    channel IDs as we build the final version.
+*/
+
+const teamChannels = {
+
+    "Chicago Bears": "",
+    "Atlanta Falcons": "",
+    "Las Vegas Raiders": "",
+    "Arizona Cardinals": "",
+    "Baltimore Ravens": "",
+    "Los Angeles Rams": "",
+    "Indianapolis Colts": "",
+    "Pittsburgh Steelers": "",
+    "Tennessee Titans": "",
+    "Buffalo Bills": "",
+    "Washington Commanders": "",
+    "Minnesota Vikings": "",
+    "New Orleans Saints": "",
+    "Houston Texans": ""
+
+};
 
 
-fantasyPlayers.forEach(player => {
+async function searchYouTube(channelId, player) {
 
-    const playerDiv = document.createElement("div");
+    const now = new Date();
 
-    playerDiv.className = "player";
+    const sevenDaysAgo = new Date(
+        now.getTime() - (7 * 24 * 60 * 60 * 1000)
+    );
+
+    const params = new URLSearchParams({
+
+        part: "snippet",
+
+        channelId: channelId,
+
+        q: player.searchName,
+
+        type: "video",
+
+        order: "date",
+
+        publishedAfter: sevenDaysAgo.toISOString(),
+
+        publishedBefore: now.toISOString(),
+
+        maxResults: "10",
+
+        key: YOUTUBE_API_KEY
+
+    });
+
+
+    const url =
+        "https://www.googleapis.com/youtube/v3/search?" +
+        params.toString();
+
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+
+        console.error(
+            "YouTube API error:",
+            response.status
+        );
+
+        return [];
+
+    }
+
+
+    const data = await response.json();
+
+    return data.items || [];
+
+}
+
+
+async function loadVideos() {
+
+    const container =
+        document.getElementById("players");
+
+
+    container.innerHTML =
+        "<p>Searching YouTube...</p>";
+
+
+    for (const player of fantasyPlayers) {
+
+        console.log(
+            "Searching for:",
+            player.name
+        );
+
+
+        /*
+            Search the official NFL channel.
+        */
+
+        const nflVideos =
+            await searchYouTube(
+                NFL_CHANNEL_ID,
+                player
+            );
+
+
+        /*
+            Search the player's team channel
+            if we have its channel ID.
+        */
+
+        let teamVideos = [];
+
+        const teamChannelId =
+            teamChannels[player.team];
+
+
+        if (teamChannelId) {
+
+            teamVideos =
+                await searchYouTube(
+                    teamChannelId,
+                    player
+                );
+
+        }
+
+
+        /*
+            Combine NFL + team videos.
+        */
+
+        const allVideos = [
+            ...nflVideos,
+            ...teamVideos
+        ];
+
+
+        /*
+            Remove duplicate videos.
+        */
+
+        const uniqueVideos = [
+            ...new Map(
+                allVideos.map(video => [
+                    video.id.videoId,
+                    video
+                ])
+            ).values()
+        ];
+
+
+        displayPlayer(
+            player,
+            uniqueVideos
+        );
+
+    }
+
+}
+
+
+function displayPlayer(player, videos) {
+
+    const container =
+        document.getElementById("players");
+
+
+    /*
+        Find existing player section,
+        or create one.
+    */
+
+    let playerDiv =
+        document.getElementById(
+            "player-" + player.name
+                .replace(/[^a-zA-Z0-9]/g, "-")
+        );
+
+
+    if (!playerDiv) {
+
+        playerDiv =
+            document.createElement("div");
+
+        playerDiv.className = "player";
+
+        playerDiv.id =
+            "player-" +
+            player.name.replace(
+                /[^a-zA-Z0-9]/g,
+                "-"
+            );
+
+        container.appendChild(playerDiv);
+
+    }
+
+
+    let videoHTML = "";
+
+
+    if (videos.length === 0) {
+
+        videoHTML =
+            `<div class="videos">
+                No videos found in the last 7 days.
+            </div>`;
+
+    } else {
+
+        videoHTML = videos.map(video => {
+
+            const videoId =
+                video.id.videoId;
+
+            const title =
+                video.snippet.title;
+
+            const published =
+                new Date(
+                    video.snippet.publishedAt
+                ).toLocaleDateString();
+
+
+            return `
+                <div class="video">
+
+                    <a
+                        href="https://www.youtube.com/watch?v=${videoId}"
+                        target="_blank"
+                    >
+
+                        <img
+                            src="${video.snippet.thumbnails.medium.url}"
+                            alt="${title}"
+                        >
+
+                    </a>
+
+                    <div class="video-title">
+                        ${title}
+                    </div>
+
+                    <div class="video-date">
+                        ${published}
+                        •
+                        ${video.snippet.channelTitle}
+                    </div>
+
+                </div>
+            `;
+
+        }).join("");
+
+    }
+
 
     playerDiv.innerHTML = `
+
         <div class="player-name">
             ${player.name}
         </div>
@@ -206,46 +581,17 @@ fantasyPlayers.forEach(player => {
         </div>
 
         <div class="videos">
-            YouTube videos will appear here.
+
+            ${videoHTML}
+
         </div>
+
     `;
 
-    playersContainer.appendChild(playerDiv);
-
-});
-
-const YOUTUBE_API_KEY = "AIzaSyDA7ORUUGoY1257EscDWfeBPwO93MtnVCU";
-
-async function testYouTube() {
-
-    const now = new Date();
-
-    const sevenDaysAgo = new Date(
-        now.getTime() - 7 * 24 * 60 * 60 * 1000
-    );
-
-    const publishedAfter = sevenDaysAgo.toISOString();
-    const publishedBefore = now.toISOString();
-
-    const url =
-        "https://www.googleapis.com/youtube/v3/search" +
-        "?part=snippet" +
-        "&q=Bijan%20Robinson" +
-        "&type=video" +
-        "&order=date" +
-        "&publishedAfter=" + encodeURIComponent(publishedAfter) +
-        "&publishedBefore=" + encodeURIComponent(publishedBefore) +
-        "&maxResults=10" +
-        "&key=" + YOUTUBE_API_KEY;
-
-    const response = await fetch(url);
-
-    const data = await response.json();
-
-    console.log(data);
 }
 
-testYouTube();
+
+loadVideos();
 </script>
 
 </body>
