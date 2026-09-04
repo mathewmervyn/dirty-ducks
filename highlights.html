@@ -1,1 +1,138 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fantasy Highlights</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 30px;
+            background: #f5f5f5;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .controls {
+            margin-bottom: 30px;
+        }
+
+        select {
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        .player {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .player h2 {
+            margin-top: 0;
+        }
+
+        .video-placeholder {
+            background: #ddd;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>My Fantasy Highlights</h1>
+
+    <div class="controls">
+        <label for="week">NFL Week:</label>
+
+        <select id="week">
+            <option value="1">Week 1</option>
+            <option value="2">Week 2</option>
+            <option value="3">Week 3</option>
+            <option value="4">Week 4</option>
+            <option value="5">Week 5</option>
+            <option value="6">Week 6</option>
+            <option value="7">Week 7</option>
+            <option value="8">Week 8</option>
+            <option value="9">Week 9</option>
+            <option value="10">Week 10</option>
+            <option value="11">Week 11</option>
+            <option value="12">Week 12</option>
+            <option value="13">Week 13</option>
+            <option value="14">Week 14</option>
+            <option value="15">Week 15</option>
+            <option value="16">Week 16</option>
+            <option value="17">Week 17</option>
+            <option value="18">Week 18</option>
+        </select>
+    </div>
+
+    <div id="players"></div>
+
+    <script>
+
+        const fantasyPlayers = [
+            {
+                name: "Josh Allen",
+                team: "Buffalo Bills",
+                position: "QB"
+            },
+            {
+                name: "Christian McCaffrey",
+                team: "San Francisco 49ers",
+                position: "RB"
+            }
+        ];
+
+
+        function displayPlayers() {
+
+            const container = document.getElementById("players");
+
+            container.innerHTML = "";
+
+            fantasyPlayers.forEach(player => {
+
+                const playerDiv = document.createElement("div");
+
+                playerDiv.className = "player";
+
+                playerDiv.innerHTML = `
+                    <h2>${player.name}</h2>
+
+                    <p>
+                        ${player.position} • ${player.team}
+                    </p>
+
+                    <div class="video-placeholder">
+                        YouTube highlight will go here
+                    </div>
+                `;
+
+                container.appendChild(playerDiv);
+            });
+        }
+
+
+        displayPlayers();
+
+    </script>
+
+</body>
+</html>
+
+
+
+
