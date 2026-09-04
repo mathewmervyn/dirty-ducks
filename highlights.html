@@ -10,129 +10,214 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background: #f4f4f4;
             margin: 0;
             padding: 30px;
-            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
         }
 
         h1 {
-            margin-bottom: 20px;
+            margin-bottom: 5px;
         }
 
-        .controls {
+        .subtitle {
+            color: #666;
             margin-bottom: 30px;
-        }
-
-        select {
-            padding: 8px;
-            font-size: 16px;
         }
 
         .player {
             background: white;
+            border-radius: 10px;
             padding: 20px;
             margin-bottom: 20px;
-            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
-        .player h2 {
-            margin-top: 0;
+        .player-name {
+            font-size: 22px;
+            font-weight: bold;
         }
 
-        .video-placeholder {
-            background: #ddd;
-            height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #555;
+        .player-info {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .videos {
+            margin-top: 15px;
+            color: #888;
         }
     </style>
 </head>
 
 <body>
 
-    <h1>My Fantasy Highlights</h1>
+<div class="container">
 
-    <div class="controls">
-        <label for="week">NFL Week:</label>
+    <h1>Fantasy Highlights</h1>
 
-        <select id="week">
-            <option value="1">Week 1</option>
-            <option value="2">Week 2</option>
-            <option value="3">Week 3</option>
-            <option value="4">Week 4</option>
-            <option value="5">Week 5</option>
-            <option value="6">Week 6</option>
-            <option value="7">Week 7</option>
-            <option value="8">Week 8</option>
-            <option value="9">Week 9</option>
-            <option value="10">Week 10</option>
-            <option value="11">Week 11</option>
-            <option value="12">Week 12</option>
-            <option value="13">Week 13</option>
-            <option value="14">Week 14</option>
-            <option value="15">Week 15</option>
-            <option value="16">Week 16</option>
-            <option value="17">Week 17</option>
-            <option value="18">Week 18</option>
-        </select>
+    <div class="subtitle">
+        Videos from the last 7 days
     </div>
 
     <div id="players"></div>
 
-    <script>
+</div>
 
-        const fantasyPlayers = [
-            {
-                name: "Josh Allen",
-                team: "Buffalo Bills",
-                position: "QB"
-            },
-            {
-                name: "Christian McCaffrey",
-                team: "San Francisco 49ers",
-                position: "RB"
-            }
-        ];
+<script>
+
+const fantasyPlayers = [
+
+    {
+        name: "Caleb Williams",
+        team: "Chicago Bears",
+        position: "QB",
+        searchName: "Caleb Williams"
+    },
+
+    {
+        name: "Bijan Robinson",
+        team: "Atlanta Falcons",
+        position: "RB",
+        searchName: "Bijan Robinson"
+    },
+
+    {
+        name: "Ashton Jeanty",
+        team: "Las Vegas Raiders",
+        position: "RB",
+        searchName: "Ashton Jeanty"
+    },
+
+    {
+        name: "Trey McBride",
+        team: "Arizona Cardinals",
+        position: "TE",
+        searchName: "Trey McBride"
+    },
+
+    {
+        name: "Zay Flowers",
+        team: "Baltimore Ravens",
+        position: "WR",
+        searchName: "Zay Flowers"
+    },
+
+    {
+        name: "Davante Adams",
+        team: "Los Angeles Rams",
+        position: "WR",
+        searchName: "Davante Adams"
+    },
+
+    {
+        name: "Alec Pierce",
+        team: "Indianapolis Colts",
+        position: "WR",
+        searchName: "Alec Pierce"
+    },
+
+    {
+        name: "Jeremiyah Love",
+        team: "Arizona Cardinals",
+        position: "RB",
+        searchName: "Jeremiyah Love"
+    },
+
+    {
+        name: "Michael Pittman Jr.",
+        team: "Pittsburgh Steelers",
+        position: "WR",
+        searchName: "Michael Pittman Jr."
+    },
+
+    {
+        name: "Tony Pollard",
+        team: "Tennessee Titans",
+        position: "RB",
+        searchName: "Tony Pollard"
+    },
+
+    {
+        name: "Khalil Shakir",
+        team: "Buffalo Bills",
+        position: "WR",
+        searchName: "Khalil Shakir"
+    },
+
+    {
+        name: "Jacory Croskey-Merritt",
+        team: "Washington Commanders",
+        position: "RB",
+        searchName: "Jacory Bill Croskey-Merritt"
+    },
+
+    {
+        name: "Kyler Murray",
+        team: "Minnesota Vikings",
+        position: "QB",
+        searchName: "Kyler Murray"
+    },
+
+    {
+        name: "Tyler Allgeier",
+        team: "Arizona Cardinals",
+        position: "RB",
+        searchName: "Tyler Allgeier"
+    },
+
+    {
+        name: "Jordyn Tyson",
+        team: "New Orleans Saints",
+        position: "WR",
+        searchName: "Jordyn Tyson"
+    },
+
+    {
+        name: "Tank Dell",
+        team: "Houston Texans",
+        position: "WR",
+        searchName: "Tank Dell"
+    }
+
+];
 
 
-        function displayPlayers() {
-
-            const container = document.getElementById("players");
-
-            container.innerHTML = "";
-
-            fantasyPlayers.forEach(player => {
-
-                const playerDiv = document.createElement("div");
-
-                playerDiv.className = "player";
-
-                playerDiv.innerHTML = `
-                    <h2>${player.name}</h2>
-
-                    <p>
-                        ${player.position} • ${player.team}
-                    </p>
-
-                    <div class="video-placeholder">
-                        YouTube highlight will go here
-                    </div>
-                `;
-
-                container.appendChild(playerDiv);
-            });
-        }
+const playersContainer = document.getElementById("players");
 
 
-        displayPlayers();
+fantasyPlayers.forEach(player => {
 
-    </script>
+    const playerDiv = document.createElement("div");
+
+    playerDiv.className = "player";
+
+    playerDiv.innerHTML = `
+        <div class="player-name">
+            ${player.name}
+        </div>
+
+        <div class="player-info">
+            ${player.position} • ${player.team}
+        </div>
+
+        <div class="videos">
+            YouTube videos will appear here.
+        </div>
+    `;
+
+    playersContainer.appendChild(playerDiv);
+
+});
+
+</script>
 
 </body>
 </html>
-
 
 
 
