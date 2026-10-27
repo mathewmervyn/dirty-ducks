@@ -1,11 +1,102 @@
+
 name: Yahoo API setup test
 
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Confirm GitHub Actions works
-        run: echo "GitHub Actions is ready for Yahoo integration."
+      - name: Test Yahoo API access
+        env:
+          YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
+          YAHOO_REFRESH_TOKEN: ${{ secrets.YAHOO_REFRESH_TOKEN }}
+        run: |
+          node --input-type=module <<'NODE'
+          const clientId = process.env.YAHOO_CLIENT_ID;
+          const refreshToken = process.env.YAHOO_REFRESH_TOKEN;
+
+          if (!clientId || !refreshToken) {
+            console.error("Required GitHub secrets are missing.");
+            process.exit(1);
+          }
+
+          const tokenResponse = await fetch(
+            "https://api.login.yahoo.com/oauth2/get_token",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+              },
+              body: new URLSearchParams({
+                client_id: clientId,
+                refresh_token: refreshToken,
+                grant_type: "refresh_token"
+              })
+            }
+          );
+
+          if (!tokenResponse.ok) {
+            console.error("Yahoo token refresh failed. HTTP status:", tokenResponse.status);
+            process.exit(1);
+          }
+
+          const tokens = await tokenResponse.json();
+
+          if (!tokens.access_token) {
+            console.error("Yahoo did not return an access token.");
+            process.exit(1);
+          }
+
+          console.log("Yahoo authentication successful.");
+
+          const apiResponse = await fetch(
+            "https://fantasysports.yahooapis.com/fantasy/v2/users;use_login=1/games;game_keys=nfl/leagues?format=json",
+            {
+              headers: {
+                Authorization: `Bearer ${tokens.access_token}`,
+                Accept: "application/json"
+              }
+            }
+          );
+
+          if (!apiResponse.ok) {
+            console.error("Yahoo Fantasy API request failed. HTTP status:", apiResponse.status);
+            process.exit(1);
+          }
+
+          const data = await apiResponse.json();
+          const leagues = [];
+
+          function findLeagues(value) {
+            if (!value || typeof value !== "object") return;
+
+            if (value.league_key) {
+              leagues.push({
+                key: value.league_key,
+                name: value.name || "Unnamed league"
+              });
+            }
+
+            for (const child of Object.values(value)) {
+              findLeagues(child);
+            }
+          }
+
+          findLeagues(data);
+
+          if (leagues.length === 0) {
+            console.log("API access succeeded, but no league keys were found in the response.");
+            console.log("Top-level response keys:", Object.keys(data).join(", "));
+            process.exit(1);
+          }
+
+          console.log("Fantasy leagues found:");
+          for (const league of leagues) {
+            console.log(`${league.name} | ${league.key}`);
+          }
+          NODE
