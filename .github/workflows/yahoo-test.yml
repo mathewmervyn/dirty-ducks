@@ -54,15 +54,54 @@ jobs:
 
           console.log("Yahoo authentication successful.");
 
-          const apiResponse = await fetch(
-            "https://fantasysports.yahooapis.com/fantasy/v2/users;use_login=1/games;game_keys=nfl/leagues?format=json",
-            {
-              headers: {
-                Authorization: `Bearer ${tokens.access_token}`,
-                Accept: "application/json"
-              }
-            }
-          );
+          
+const apiResponse = await fetch(
+  "https://fantasysports.yahooapis.com/fantasy/v2/users;use_login=1/games;game_keys=470/teams?format=json",
+  {
+    headers: {
+      Authorization: `Bearer ${tokens.access_token}`,
+      Accept: "application/json"
+    }
+  }
+);
+
+if (!apiResponse.ok) {
+  console.error("Yahoo API request failed. HTTP status:", apiResponse.status);
+  console.error((await apiResponse.text()).slice(0, 1000));
+  process.exit(1);
+}
+
+const data = await apiResponse.json();
+const teamKeys = new Set();
+
+function findTeamKeys(value) {
+  if (!value || typeof value !== "object") return;
+
+  if (
+    typeof value.team_key === "string" &&
+    value.team_key.startsWith("470.l.817356.t.")
+  ) {
+    teamKeys.add(value.team_key);
+  }
+
+  for (const child of Object.values(value)) {
+    findTeamKeys(child);
+  }
+}
+
+findTeamKeys(data);
+
+if (teamKeys.size === 0) {
+  console.log("No team keys found for this league.");
+  console.log("Check that your Yahoo account owns a team in this league.");
+  process.exit(1);
+}
+
+console.log("Your team key candidates:");
+for (const key of teamKeys) {
+  console.log(key);
+}
+;
 
           if (!apiResponse.ok) {
             const errorText = await apiResponse.text();
