@@ -25,7 +25,7 @@ jobs:
             process.exit(1);
           }
 
-          // Refresh Yahoo access token
+          // Authenticate with Yahoo
           const tokenResponse = await fetch(
             "https://api.login.yahoo.com/oauth2/get_token",
             {
@@ -42,10 +42,7 @@ jobs:
           );
 
           if (!tokenResponse.ok) {
-            console.error(
-              "Yahoo token refresh failed. HTTP status:",
-              tokenResponse.status
-            );
+            console.error("Yahoo authentication failed:", tokenResponse.status);
             process.exit(1);
           }
 
@@ -58,46 +55,9 @@ jobs:
 
           console.log("Yahoo authentication successful.");
 
-          // Verify that this is your team and retrieve its details
+          // Retrieve your team roster
           const teamKey = "470.l.817356.t.1";
 
-          const teamResponse = await fetch(
-            `https://fantasysports.yahooapis.com/fantasy/v2/team/${teamKey}?format=json`,
-            {
-              headers: {
-                Authorization: `Bearer ${tokens.access_token}`,
-                Accept: "application/json"
-              }
-            }
-          );
-
-          if (!teamResponse.ok) {
-            console.error(
-              "Team request failed. HTTP status:",
-              teamResponse.status
-            );
-            console.error((await teamResponse.text()).slice(0, 1000));
-            process.exit(1);
-          }
-
-          const teamData = await teamResponse.json();
-          const teamRoot = teamData.fantasy_content?.team?.[0] || [];
-          const teamDetails = {};
-
-          for (const item of teamRoot) {
-            if (Array.isArray(item)) continue;
-            if (item && typeof item === "object") {
-              Object.assign(teamDetails, item);
-            }
-          }
-
-          console.log("Team:", teamDetails.name || "Unknown");
-          console.log(
-            "Owned by current login:",
-            teamDetails.is_owned_by_current_login === 1 ? "Yes" : "Check response"
-          );
-
-          // Retrieve current roster
           const rosterResponse = await fetch(
             `https://fantasysports.yahooapis.com/fantasy/v2/team/${teamKey}/roster/players?format=json`,
             {
@@ -109,51 +69,59 @@ jobs:
           );
 
           if (!rosterResponse.ok) {
-            console.error(
-              "Roster request failed. HTTP status:",
-              rosterResponse.status
-            );
+            console.error("Roster request failed:", rosterResponse.status);
             console.error((await rosterResponse.text()).slice(0, 1000));
             process.exit(1);
           }
 
           const rosterData = await rosterResponse.json();
+
+          // Yahoo stores each player as an array of property objects.
           const players = [];
+          const playerEntries =
+            rosterData.fantasy_content?.team?.[1]?.roster?.[0]?.players;
 
-          function findPlayers(value) {
-            if (!value || typeof value !== "object") return;
-
-            if (value.player_key && value.name) {
-              players.push({
-                name: value.name.full || "Unknown player",
-                nflTeam: value.editorial_team_full_name || "Unknown NFL team",
-                position: value.display_position || "Unknown position",
-                playerKey: value.player_key
-              });
-              return;
-            }
-
-            for (const child of Object.values(value)) {
-              findPlayers(child);
-            }
-          }
-
-          findPlayers(rosterData);
-
-          if (players.length === 0) {
-            console.error("No players found in the roster response.");
-            console.log(
-              "Response structure:",
-              JSON.stringify(rosterData).slice(0, 2000)
-            );
+          if (!playerEntries) {
+            console.error("Could not find the players section in Yahoo's response.");
+            console.log(JSON.stringify(rosterData).slice(0, 3000));
             process.exit(1);
           }
 
-          console.log(`\nRoster retrieved successfully: ${players.length} players\n`);
+          for (const entry of Object.values(playerEntries)) {
+            const playerArray = entry?.player;
+
+            if (!Array.isArray(playerArray)) continue;
+
+            const player = {};
+
+            for (const property of playerArray) {
+              if (!Array.isArray(property) && property && typeof property === "object") {
+                Object.assign(player, property);
+              }
+            }
+
+            if (!player.player_key) continue;
+
+            players.push({
+              name: player.name?.full || "Unknown player",
+              team: player.editorial_team_full_name || "Unknown NFL team",
+              position: player.display_position || "Unknown position",
+              playerKey: player.player_key,
+              playerId: player.player_id
+            });
+          }
+
+          if (players.length === 0) {
+            console.error("No players were parsed from Yahoo's response.");
+            console.log("Players section:", JSON.stringify(playerEntries).slice(0, 3000));
+            process.exit(1);
+          }
+
+          console.log(`\nYour Yahoo roster contains ${players.length} players:\n`);
 
           for (const player of players) {
-            console.log(
-              `${player.name} | ${player.nflTeam} | ${player.position}`
-            );
+            console.log(`${player.name} | ${player.team} | ${player.position}`);
           }
+
+          console.log("\nRoster retrieval successful.");
           NODE
