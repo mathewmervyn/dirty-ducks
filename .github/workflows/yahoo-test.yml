@@ -1,31 +1,39 @@
 
-name: Yahoo API setup test
+name: Update Yahoo Fantasy Roster
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "0 12 * * *"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  test:
+  update-roster:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Retrieve Yahoo fantasy roster
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Retrieve and save Yahoo roster
         env:
           YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
           YAHOO_REFRESH_TOKEN: ${{ secrets.YAHOO_REFRESH_TOKEN }}
         run: |
           node --input-type=module <<'NODE'
+          import fs from "node:fs";
+          import path from "node:path";
+
           const clientId = process.env.YAHOO_CLIENT_ID;
           const refreshToken = process.env.YAHOO_REFRESH_TOKEN;
 
           if (!clientId || !refreshToken) {
-            console.error("Required GitHub secrets are missing.");
-            process.exit(1);
+            throw new Error("Required GitHub secrets are missing.");
           }
 
-          // 1. Authenticate with Yahoo
+          // Authenticate with Yahoo
           const tokenResponse = await fetch(
             "https://api.login.yahoo.com/oauth2/get_token",
             {
@@ -42,23 +50,20 @@ jobs:
           );
 
           if (!tokenResponse.ok) {
-            console.error(
-              "Yahoo authentication failed. HTTP status:",
-              tokenResponse.status
+            throw new Error(
+              `Yahoo authentication failed: HTTP ${tokenResponse.status}`
             );
-            process.exit(1);
           }
 
           const tokens = await tokenResponse.json();
 
           if (!tokens.access_token) {
-            console.error("Yahoo did not return an access token.");
-            process.exit(1);
+            throw new Error("Yahoo did not return an access token.");
           }
 
           console.log("Yahoo authentication successful.");
 
-          // 2. Retrieve your Yahoo team and roster
+          // Retrieve the current roster
           const teamKey = "470.l.817356.t.1";
 
           const rosterResponse = await fetch(
@@ -72,26 +77,20 @@ jobs:
           );
 
           if (!rosterResponse.ok) {
-            console.error(
-              "Roster request failed. HTTP status:",
-              rosterResponse.status
+            throw new Error(
+              `Roster request failed: HTTP ${rosterResponse.status}`
             );
-            console.error((await rosterResponse.text()).slice(0, 2000));
-            process.exit(1);
           }
 
           const rosterData = await rosterResponse.json();
-
-          // 3. Read Yahoo's nested roster structure
-          const players = [];
           const playerEntries =
             rosterData.fantasy_content?.team?.[1]?.roster?.[0]?.players;
 
           if (!playerEntries) {
-            console.error("Could not find the players section.");
-            console.log(JSON.stringify(rosterData).slice(0, 2000));
-            process.exit(1);
+            throw new Error("Yahoo roster response has no players section.");
           }
+
+          const players = [];
 
           for (const entry of Object.values(playerEntries)) {
             const playerProperties = entry?.player?.[0];
@@ -110,35 +109,53 @@ jobs:
               }
             }
 
-            if (!player.player_key) continue;
+            if (!player.player_key || !player.name?.full) continue;
 
             players.push({
-              name: player.name?.full || "Unknown player",
-              team: player.editorial_team_full_name || "Unknown NFL team",
-              position: player.display_position || "Unknown position",
+              name: player.name.full,
+              team: player.editorial_team_full_name || "",
+              position: player.display_position || "",
               playerKey: player.player_key,
-              playerId: player.player_id
+              playerId: String(player.player_id || ""),
+              searchName: player.name.full
             });
           }
 
-          // 4. Print the roster
           if (players.length === 0) {
-            console.error("No players were parsed from Yahoo's response.");
-            console.log(
-              "Players section:",
-              JSON.stringify(playerEntries).slice(0, 2000)
-            );
-            process.exit(1);
+            throw new Error("No players parsed. Existing roster file will be preserved.");
           }
 
-          console.log(`\nTeam key: ${teamKey}`);
-          console.log(`Roster retrieved successfully: ${players.length} players\n`);
+          // Create data/roster.json
+          const outputDirectory = "data";
+          fs.mkdirSync(outputDirectory, { recursive: true });
 
-          for (const player of players) {
-            console.log(
-              `${player.name} | ${player.team} | ${player.position} | ${player.playerKey}`
-            );
-          }
+          const outputPath = path.join(outputDirectory, "roster.json");
 
-          console.log("\nYahoo roster retrieval complete.");
+          fs.writeFileSync(
+            outputPath,
+            JSON.stringify(
+              {
+                updatedAt: new Date().toISOString(),
+                teamKey,
+                players
+              },
+              null,
+              2
+            ) + "\n"
+          );
+
+          console.log(`Saved ${players.length} players to ${outputPath}.`);
           NODE
+
+      - name: Commit updated roster
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/roster.json
+
+          if git diff --cached --quiet; then
+            echo "Roster has not changed. No commit needed."
+          else
+            git commit -m "Update Yahoo fantasy roster"
+            git push
+          fi
