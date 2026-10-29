@@ -96,6 +96,29 @@ jobs:
               findTeamKeys(child);
             }
           }
+            
+            const teamKey = "470.l.817356.t.1";
+
+            const teamResponse = await fetch(
+              `https://fantasysports.yahooapis.com/fantasy/v2/team/${teamKey}?format=json`,
+              {
+                headers: {
+                  Authorization: `Bearer ${tokens.access_token}`,
+                  Accept: "application/json"
+                  }
+                }
+            );
+
+            if (!teamResponse.ok) {
+              console.error("Team lookup failed. HTTP status:", teamResponse.status);
+              console.error((await teamResponse.text()).slice(0, 1000));
+              process.exit(1);
+            }
+
+              const teamData = await teamResponse.json();
+
+              console.log("Team details:");
+              console.log(JSON.stringify(teamData, null, 2));
 
           findTeamKeys(data);
 
