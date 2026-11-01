@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-31T16:45:32.967Z",
+  "updatedAt": "2026-11-01T17:35:54.433Z",
   "teamKey": "470.l.817356.t.1",
   "players": [
     {
@@ -83,14 +83,6 @@
       "searchName": "Tank Dell"
     },
     {
-      "name": "Bryce Young",
-      "team": "Carolina Panthers",
-      "position": "QB",
-      "playerKey": "470.p.40029",
-      "playerId": "40029",
-      "searchName": "Bryce Young"
-    },
-    {
       "name": "Jordyn Tyson",
       "team": "New Orleans Saints",
       "position": "WR",
@@ -113,6 +105,14 @@
       "playerKey": "470.p.29399",
       "playerId": "29399",
       "searchName": "Tyreek Hill"
+    },
+    {
+      "name": "C.J. Stroud",
+      "team": "Houston Texans",
+      "position": "QB",
+      "playerKey": "470.p.40030",
+      "playerId": "40030",
+      "searchName": "C.J. Stroud"
     },
     {
       "name": "Davante Adams",
