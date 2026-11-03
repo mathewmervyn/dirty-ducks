@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-02T21:21:23.390Z",
+  "updatedAt": "2026-11-03T18:59:06.211Z",
   "teamKey": "470.l.817356.t.1",
   "players": [
     {
@@ -43,12 +43,12 @@
       "searchName": "Ryan Flournoy"
     },
     {
-      "name": "Khalil Shakir",
-      "team": "Buffalo Bills",
+      "name": "Rashid Shaheed",
+      "team": "Seattle Seahawks",
       "position": "WR",
-      "playerKey": "470.p.34104",
-      "playerId": "34104",
-      "searchName": "Khalil Shakir"
+      "playerKey": "470.p.34659",
+      "playerId": "34659",
+      "searchName": "Rashid Shaheed"
     },
     {
       "name": "Trey McBride",
@@ -59,20 +59,20 @@
       "searchName": "Trey McBride"
     },
     {
+      "name": "Khalil Shakir",
+      "team": "Buffalo Bills",
+      "position": "WR",
+      "playerKey": "470.p.34104",
+      "playerId": "34104",
+      "searchName": "Khalil Shakir"
+    },
+    {
       "name": "Tony Pollard",
       "team": "Tennessee Titans",
       "position": "RB",
       "playerKey": "470.p.31960",
       "playerId": "31960",
       "searchName": "Tony Pollard"
-    },
-    {
-      "name": "Rashid Shaheed",
-      "team": "Seattle Seahawks",
-      "position": "WR",
-      "playerKey": "470.p.34659",
-      "playerId": "34659",
-      "searchName": "Rashid Shaheed"
     },
     {
       "name": "Tank Dell",
