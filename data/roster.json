@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-03T18:59:06.211Z",
+  "updatedAt": "2026-11-04T19:18:28.032Z",
   "teamKey": "470.l.817356.t.1",
   "players": [
     {
@@ -99,14 +99,6 @@
       "searchName": "Jeremiyah Love"
     },
     {
-      "name": "Tyreek Hill",
-      "team": "Miami Dolphins",
-      "position": "WR",
-      "playerKey": "470.p.29399",
-      "playerId": "29399",
-      "searchName": "Tyreek Hill"
-    },
-    {
       "name": "C.J. Stroud",
       "team": "Houston Texans",
       "position": "QB",
@@ -137,6 +129,14 @@
       "playerKey": "470.p.41499",
       "playerId": "41499",
       "searchName": "Spencer Shrader"
+    },
+    {
+      "name": "Bears",
+      "team": "Chicago Bears",
+      "position": "DEF",
+      "playerKey": "470.p.100003",
+      "playerId": "100003",
+      "searchName": "Bears"
     },
     {
       "name": "Steelers",
