@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-06T18:49:55.611Z",
+  "updatedAt": "2026-11-07T17:21:45.636Z",
   "teamKey": "470.l.817356.t.1",
   "players": [
     {
@@ -43,12 +43,12 @@
       "searchName": "Ryan Flournoy"
     },
     {
-      "name": "Rashid Shaheed",
-      "team": "Seattle Seahawks",
+      "name": "Omar Cooper Jr.",
+      "team": "New York Jets",
       "position": "WR",
-      "playerKey": "470.p.34659",
-      "playerId": "34659",
-      "searchName": "Rashid Shaheed"
+      "playerKey": "470.p.42652",
+      "playerId": "42652",
+      "searchName": "Omar Cooper Jr."
     },
     {
       "name": "Trey McBride",
@@ -65,6 +65,14 @@
       "playerKey": "470.p.34104",
       "playerId": "34104",
       "searchName": "Khalil Shakir"
+    },
+    {
+      "name": "Rashid Shaheed",
+      "team": "Seattle Seahawks",
+      "position": "WR",
+      "playerKey": "470.p.34659",
+      "playerId": "34659",
+      "searchName": "Rashid Shaheed"
     },
     {
       "name": "Tony Pollard",
@@ -137,14 +145,6 @@
       "playerKey": "470.p.100003",
       "playerId": "100003",
       "searchName": "Bears"
-    },
-    {
-      "name": "Steelers",
-      "team": "Pittsburgh Steelers",
-      "position": "DEF",
-      "playerKey": "470.p.100023",
-      "playerId": "100023",
-      "searchName": "Steelers"
     }
   ]
 }
