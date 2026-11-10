@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-11-09T21:53:43.949Z",
+  "updatedAt": "2026-11-10T19:15:41.518Z",
   "teamKey": "470.l.817356.t.1",
   "players": [
     {
-      "name": "Caleb Williams",
-      "team": "Chicago Bears",
+      "name": "C.J. Stroud",
+      "team": "Houston Texans",
       "position": "QB",
-      "playerKey": "470.p.40900",
-      "playerId": "40900",
-      "searchName": "Caleb Williams"
+      "playerKey": "470.p.40030",
+      "playerId": "40030",
+      "searchName": "C.J. Stroud"
     },
     {
       "name": "Bijan Robinson",
@@ -27,20 +27,20 @@
       "searchName": "Ashton Jeanty"
     },
     {
+      "name": "Khalil Shakir",
+      "team": "Buffalo Bills",
+      "position": "WR",
+      "playerKey": "470.p.34104",
+      "playerId": "34104",
+      "searchName": "Khalil Shakir"
+    },
+    {
       "name": "Zay Flowers",
       "team": "Baltimore Ravens",
       "position": "WR",
       "playerKey": "470.p.40039",
       "playerId": "40039",
       "searchName": "Zay Flowers"
-    },
-    {
-      "name": "Ryan Flournoy",
-      "team": "Dallas Cowboys",
-      "position": "WR",
-      "playerKey": "470.p.41087",
-      "playerId": "41087",
-      "searchName": "Ryan Flournoy"
     },
     {
       "name": "Omar Cooper Jr.",
@@ -59,22 +59,6 @@
       "searchName": "Trey McBride"
     },
     {
-      "name": "Khalil Shakir",
-      "team": "Buffalo Bills",
-      "position": "WR",
-      "playerKey": "470.p.34104",
-      "playerId": "34104",
-      "searchName": "Khalil Shakir"
-    },
-    {
-      "name": "Rashid Shaheed",
-      "team": "Seattle Seahawks",
-      "position": "WR",
-      "playerKey": "470.p.34659",
-      "playerId": "34659",
-      "searchName": "Rashid Shaheed"
-    },
-    {
       "name": "Tony Pollard",
       "team": "Tennessee Titans",
       "position": "RB",
@@ -83,12 +67,36 @@
       "searchName": "Tony Pollard"
     },
     {
+      "name": "Ryan Flournoy",
+      "team": "Dallas Cowboys",
+      "position": "WR",
+      "playerKey": "470.p.41087",
+      "playerId": "41087",
+      "searchName": "Ryan Flournoy"
+    },
+    {
       "name": "Tank Dell",
       "team": "Houston Texans",
       "position": "WR",
       "playerKey": "470.p.40097",
       "playerId": "40097",
       "searchName": "Tank Dell"
+    },
+    {
+      "name": "Caleb Williams",
+      "team": "Chicago Bears",
+      "position": "QB",
+      "playerKey": "470.p.40900",
+      "playerId": "40900",
+      "searchName": "Caleb Williams"
+    },
+    {
+      "name": "Rashid Shaheed",
+      "team": "Seattle Seahawks",
+      "position": "WR",
+      "playerKey": "470.p.34659",
+      "playerId": "34659",
+      "searchName": "Rashid Shaheed"
     },
     {
       "name": "Jordyn Tyson",
@@ -105,14 +113,6 @@
       "playerKey": "470.p.42625",
       "playerId": "42625",
       "searchName": "Jeremiyah Love"
-    },
-    {
-      "name": "C.J. Stroud",
-      "team": "Houston Texans",
-      "position": "QB",
-      "playerKey": "470.p.40030",
-      "playerId": "40030",
-      "searchName": "C.J. Stroud"
     },
     {
       "name": "Davante Adams",
