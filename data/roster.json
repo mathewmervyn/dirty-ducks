@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T19:29:23.265Z",
+  "updatedAt": "2026-11-13T19:09:16.520Z",
   "teamKey": "470.l.817356.t.1",
   "players": [
     {
@@ -35,20 +35,20 @@
       "searchName": "Omar Cooper Jr."
     },
     {
-      "name": "Ryan Flournoy",
-      "team": "Dallas Cowboys",
-      "position": "WR",
-      "playerKey": "470.p.41087",
-      "playerId": "41087",
-      "searchName": "Ryan Flournoy"
-    },
-    {
       "name": "Jordyn Tyson",
       "team": "New Orleans Saints",
       "position": "WR",
       "playerKey": "470.p.42630",
       "playerId": "42630",
       "searchName": "Jordyn Tyson"
+    },
+    {
+      "name": "Tetairoa McMillan",
+      "team": "Carolina Panthers",
+      "position": "WR",
+      "playerKey": "470.p.41793",
+      "playerId": "41793",
+      "searchName": "Tetairoa McMillan"
     },
     {
       "name": "Trey McBride",
@@ -67,20 +67,20 @@
       "searchName": "Zay Flowers"
     },
     {
+      "name": "Ryan Flournoy",
+      "team": "Dallas Cowboys",
+      "position": "WR",
+      "playerKey": "470.p.41087",
+      "playerId": "41087",
+      "searchName": "Ryan Flournoy"
+    },
+    {
       "name": "Tank Dell",
       "team": "Houston Texans",
       "position": "WR",
       "playerKey": "470.p.40097",
       "playerId": "40097",
       "searchName": "Tank Dell"
-    },
-    {
-      "name": "Ashton Jeanty",
-      "team": "Las Vegas Raiders",
-      "position": "RB",
-      "playerKey": "470.p.41791",
-      "playerId": "41791",
-      "searchName": "Ashton Jeanty"
     },
     {
       "name": "Khalil Shakir",
@@ -105,6 +105,14 @@
       "playerKey": "470.p.34659",
       "playerId": "34659",
       "searchName": "Rashid Shaheed"
+    },
+    {
+      "name": "Travis Etienne Jr.",
+      "team": "New Orleans Saints",
+      "position": "RB",
+      "playerKey": "470.p.33413",
+      "playerId": "33413",
+      "searchName": "Travis Etienne Jr."
     },
     {
       "name": "Jeremiyah Love",
@@ -137,14 +145,6 @@
       "playerKey": "470.p.100009",
       "playerId": "100009",
       "searchName": "Packers"
-    },
-    {
-      "name": "Bears",
-      "team": "Chicago Bears",
-      "position": "DEF",
-      "playerKey": "470.p.100003",
-      "playerId": "100003",
-      "searchName": "Bears"
     }
   ]
 }
