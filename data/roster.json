@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-13T19:09:16.520Z",
+  "updatedAt": "2026-11-14T17:37:43.164Z",
   "teamKey": "470.l.817356.t.1",
   "players": [
     {
@@ -83,14 +83,6 @@
       "searchName": "Tank Dell"
     },
     {
-      "name": "Khalil Shakir",
-      "team": "Buffalo Bills",
-      "position": "WR",
-      "playerKey": "470.p.34104",
-      "playerId": "34104",
-      "searchName": "Khalil Shakir"
-    },
-    {
       "name": "Caleb Williams",
       "team": "Chicago Bears",
       "position": "QB",
@@ -113,6 +105,14 @@
       "playerKey": "470.p.33413",
       "playerId": "33413",
       "searchName": "Travis Etienne Jr."
+    },
+    {
+      "name": "Emmett Johnson",
+      "team": "Kansas City Chiefs",
+      "position": "RB",
+      "playerKey": "470.p.42796",
+      "playerId": "42796",
+      "searchName": "Emmett Johnson"
     },
     {
       "name": "Jeremiyah Love",
