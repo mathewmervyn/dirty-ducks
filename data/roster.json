@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-16T21:36:23.395Z",
+  "updatedAt": "2026-11-17T20:25:46.099Z",
   "teamKey": "470.l.817356.t.1",
   "players": [
     {
@@ -11,28 +11,20 @@
       "searchName": "C.J. Stroud"
     },
     {
-      "name": "Bijan Robinson",
-      "team": "Atlanta Falcons",
+      "name": "Tony Pollard",
+      "team": "Tennessee Titans",
       "position": "RB",
-      "playerKey": "470.p.40055",
-      "playerId": "40055",
-      "searchName": "Bijan Robinson"
+      "playerKey": "470.p.31960",
+      "playerId": "31960",
+      "searchName": "Tony Pollard"
     },
     {
-      "name": "Emmett Johnson",
-      "team": "Kansas City Chiefs",
+      "name": "Travis Etienne Jr.",
+      "team": "New Orleans Saints",
       "position": "RB",
-      "playerKey": "470.p.42796",
-      "playerId": "42796",
-      "searchName": "Emmett Johnson"
-    },
-    {
-      "name": "Omar Cooper Jr.",
-      "team": "New York Jets",
-      "position": "WR",
-      "playerKey": "470.p.42652",
-      "playerId": "42652",
-      "searchName": "Omar Cooper Jr."
+      "playerKey": "470.p.33413",
+      "playerId": "33413",
+      "searchName": "Travis Etienne Jr."
     },
     {
       "name": "Tetairoa McMillan",
@@ -51,20 +43,20 @@
       "searchName": "Zay Flowers"
     },
     {
+      "name": "Ryan Flournoy",
+      "team": "Dallas Cowboys",
+      "position": "WR",
+      "playerKey": "470.p.41087",
+      "playerId": "41087",
+      "searchName": "Ryan Flournoy"
+    },
+    {
       "name": "Trey McBride",
       "team": "Arizona Cardinals",
       "position": "TE",
       "playerKey": "470.p.34010",
       "playerId": "34010",
       "searchName": "Trey McBride"
-    },
-    {
-      "name": "Tony Pollard",
-      "team": "Tennessee Titans",
-      "position": "RB",
-      "playerKey": "470.p.31960",
-      "playerId": "31960",
-      "searchName": "Tony Pollard"
     },
     {
       "name": "Jordyn Tyson",
@@ -75,20 +67,28 @@
       "searchName": "Jordyn Tyson"
     },
     {
-      "name": "Ryan Flournoy",
-      "team": "Dallas Cowboys",
-      "position": "WR",
-      "playerKey": "470.p.41087",
-      "playerId": "41087",
-      "searchName": "Ryan Flournoy"
-    },
-    {
       "name": "Tank Dell",
       "team": "Houston Texans",
       "position": "WR",
       "playerKey": "470.p.40097",
       "playerId": "40097",
       "searchName": "Tank Dell"
+    },
+    {
+      "name": "Omar Cooper Jr.",
+      "team": "New York Jets",
+      "position": "WR",
+      "playerKey": "470.p.42652",
+      "playerId": "42652",
+      "searchName": "Omar Cooper Jr."
+    },
+    {
+      "name": "Bijan Robinson",
+      "team": "Atlanta Falcons",
+      "position": "RB",
+      "playerKey": "470.p.40055",
+      "playerId": "40055",
+      "searchName": "Bijan Robinson"
     },
     {
       "name": "Caleb Williams",
@@ -107,12 +107,12 @@
       "searchName": "Rashid Shaheed"
     },
     {
-      "name": "Travis Etienne Jr.",
-      "team": "New Orleans Saints",
+      "name": "Emmett Johnson",
+      "team": "Kansas City Chiefs",
       "position": "RB",
-      "playerKey": "470.p.33413",
-      "playerId": "33413",
-      "searchName": "Travis Etienne Jr."
+      "playerKey": "470.p.42796",
+      "playerId": "42796",
+      "searchName": "Emmett Johnson"
     },
     {
       "name": "Jeremiyah Love",
