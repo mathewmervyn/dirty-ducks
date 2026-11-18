@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-17T20:25:46.099Z",
+  "updatedAt": "2026-11-18T19:55:02.234Z",
   "teamKey": "470.l.817356.t.1",
   "players": [
     {
@@ -19,12 +19,12 @@
       "searchName": "Tony Pollard"
     },
     {
-      "name": "Travis Etienne Jr.",
-      "team": "New Orleans Saints",
+      "name": "Emmett Johnson",
+      "team": "Kansas City Chiefs",
       "position": "RB",
-      "playerKey": "470.p.33413",
-      "playerId": "33413",
-      "searchName": "Travis Etienne Jr."
+      "playerKey": "470.p.42796",
+      "playerId": "42796",
+      "searchName": "Emmett Johnson"
     },
     {
       "name": "Tetairoa McMillan",
@@ -43,12 +43,12 @@
       "searchName": "Zay Flowers"
     },
     {
-      "name": "Ryan Flournoy",
-      "team": "Dallas Cowboys",
+      "name": "Jordyn Tyson",
+      "team": "New Orleans Saints",
       "position": "WR",
-      "playerKey": "470.p.41087",
-      "playerId": "41087",
-      "searchName": "Ryan Flournoy"
+      "playerKey": "470.p.42630",
+      "playerId": "42630",
+      "searchName": "Jordyn Tyson"
     },
     {
       "name": "Trey McBride",
@@ -59,12 +59,20 @@
       "searchName": "Trey McBride"
     },
     {
-      "name": "Jordyn Tyson",
-      "team": "New Orleans Saints",
+      "name": "Ryan Flournoy",
+      "team": "Dallas Cowboys",
       "position": "WR",
-      "playerKey": "470.p.42630",
-      "playerId": "42630",
-      "searchName": "Jordyn Tyson"
+      "playerKey": "470.p.41087",
+      "playerId": "41087",
+      "searchName": "Ryan Flournoy"
+    },
+    {
+      "name": "Travis Etienne Jr.",
+      "team": "New Orleans Saints",
+      "position": "RB",
+      "playerKey": "470.p.33413",
+      "playerId": "33413",
+      "searchName": "Travis Etienne Jr."
     },
     {
       "name": "Tank Dell",
@@ -107,14 +115,6 @@
       "searchName": "Rashid Shaheed"
     },
     {
-      "name": "Emmett Johnson",
-      "team": "Kansas City Chiefs",
-      "position": "RB",
-      "playerKey": "470.p.42796",
-      "playerId": "42796",
-      "searchName": "Emmett Johnson"
-    },
-    {
       "name": "Jeremiyah Love",
       "team": "Arizona Cardinals",
       "position": "RB",
@@ -139,12 +139,12 @@
       "searchName": "Spencer Shrader"
     },
     {
-      "name": "Packers",
-      "team": "Green Bay Packers",
+      "name": "Bills",
+      "team": "Buffalo Bills",
       "position": "DEF",
-      "playerKey": "470.p.100009",
-      "playerId": "100009",
-      "searchName": "Packers"
+      "playerKey": "470.p.100002",
+      "playerId": "100002",
+      "searchName": "Bills"
     }
   ]
 }
