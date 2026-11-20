@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-19T19:54:18.637Z",
+  "updatedAt": "2026-11-20T19:34:44.838Z",
   "teamKey": "470.l.817356.t.1",
   "players": [
     {
@@ -43,12 +43,12 @@
       "searchName": "Zay Flowers"
     },
     {
-      "name": "Jordyn Tyson",
-      "team": "New Orleans Saints",
+      "name": "Tank Dell",
+      "team": "Houston Texans",
       "position": "WR",
-      "playerKey": "470.p.42630",
-      "playerId": "42630",
-      "searchName": "Jordyn Tyson"
+      "playerKey": "470.p.40097",
+      "playerId": "40097",
+      "searchName": "Tank Dell"
     },
     {
       "name": "Trey McBride",
@@ -57,6 +57,14 @@
       "playerKey": "470.p.34010",
       "playerId": "34010",
       "searchName": "Trey McBride"
+    },
+    {
+      "name": "Jordyn Tyson",
+      "team": "New Orleans Saints",
+      "position": "WR",
+      "playerKey": "470.p.42630",
+      "playerId": "42630",
+      "searchName": "Jordyn Tyson"
     },
     {
       "name": "Ryan Flournoy",
@@ -73,14 +81,6 @@
       "playerKey": "470.p.33413",
       "playerId": "33413",
       "searchName": "Travis Etienne Jr."
-    },
-    {
-      "name": "Tank Dell",
-      "team": "Houston Texans",
-      "position": "WR",
-      "playerKey": "470.p.40097",
-      "playerId": "40097",
-      "searchName": "Tank Dell"
     },
     {
       "name": "Omar Cooper Jr.",
