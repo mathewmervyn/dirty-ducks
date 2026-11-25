@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-24T21:52:58.114Z",
+  "updatedAt": "2026-11-25T20:59:35.132Z",
   "teamKey": "470.l.817356.t.1",
   "players": [
     {
@@ -131,20 +131,20 @@
       "searchName": "Davante Adams"
     },
     {
-      "name": "Spencer Shrader",
-      "team": "Indianapolis Colts",
+      "name": "Drew Stevens",
+      "team": "Washington Commanders",
       "position": "K",
-      "playerKey": "470.p.41499",
-      "playerId": "41499",
-      "searchName": "Spencer Shrader"
+      "playerKey": "470.p.43370",
+      "playerId": "43370",
+      "searchName": "Drew Stevens"
     },
     {
-      "name": "Bills",
-      "team": "Buffalo Bills",
+      "name": "Buccaneers",
+      "team": "Tampa Bay Buccaneers",
       "position": "DEF",
-      "playerKey": "470.p.100002",
-      "playerId": "100002",
-      "searchName": "Bills"
+      "playerKey": "470.p.100027",
+      "playerId": "100027",
+      "searchName": "Buccaneers"
     }
   ]
 }
